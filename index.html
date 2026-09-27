@@ -6,7 +6,7 @@
 <title>Habit Tracker Verde Futurista</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #081410;
@@ -17,6 +17,7 @@
     --green-2: #3f9e6a;
     --green-3: #6ee3a0;
     --green-bright: #9dffc3;
+    --red: #ff6b47;
     --text: #eaf5ee;
     --text-dim: #a9c4b4;
     --text-faint: #6f8b7c;
@@ -30,295 +31,10 @@
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3,.display{
-    font-family: 'Sora', sans-serif;
-    letter-spacing: -0.01em;
-  }
+  h1,h2,h3,.display{ font-family: 'Sora', sans-serif; letter-spacing: -0.01em; }
   a{color:inherit;}
   img,svg{display:block; max-width:100%;}
-  .wrap{
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* ---------- NAV ---------- */
-  nav{
-    position: sticky; top:0; z-index: 50;
-    background: rgba(8,20,16,0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  nav .wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    height: 64px;
-  }
-  .brand{
-    display:flex; align-items:center; gap:10px;
-    font-weight:700; font-size: 1.05rem;
-  }
-  .brand-dot{
-    width:10px;height:10px;border-radius:2px;
-    background: var(--green-3);
-    box-shadow: 0 0 12px var(--green-3);
-  }
-  .nav-cta{
-    background: var(--green-3);
-    color: #06140d;
-    font-weight:600;
-    font-size: 0.9rem;
-    padding: 9px 18px;
-    border-radius: 6px;
-    text-decoration:none;
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .nav-cta:hover{ transform: translateY(-1px); box-shadow: 0 6px 18px rgba(110,227,160,0.25);}
-
-  /* ---------- HERO ---------- */
-  header.hero{
-    padding: 88px 0 72px;
-    position: relative;
-    overflow: hidden;
-    border-bottom: 1px solid var(--line);
-  }
-  .hero-grid{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 56px;
-    align-items:center;
-  }
-  @media (max-width: 860px){
-    .hero-grid{ grid-template-columns: 1fr; gap: 40px; }
-  }
-  .kicker{
-    color: var(--green-3);
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 18px;
-  }
-  h1.headline{
-    font-size: clamp(2.1rem, 5vw, 3.4rem);
-    font-weight: 800;
-    line-height: 1.08;
-    margin-bottom: 20px;
-    max-width: 560px;
-  }
-  h1.headline em{
-    font-style: normal;
-    color: var(--green-3);
-  }
-  .subhead{
-    color: var(--text-dim);
-    font-size: 1.08rem;
-    max-width: 460px;
-    margin-bottom: 32px;
-  }
-  .hero-ctas{
-    display:flex; gap: 14px; flex-wrap: wrap;
-  }
-  .btn-primary{
-    background: var(--green-3);
-    color: #06140d;
-    font-weight: 700;
-    font-size: 0.98rem;
-    padding: 14px 26px;
-    border-radius: 7px;
-    text-decoration: none;
-    display:inline-block;
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 8px 24px rgba(110,227,160,0.28);}
-  .btn-ghost{
-    border: 1px solid var(--line);
-    color: var(--text-dim);
-    font-weight: 600;
-    font-size: 0.98rem;
-    padding: 13px 24px;
-    border-radius: 7px;
-    text-decoration: none;
-    display:inline-block;
-  }
-  .price-tag{
-    margin-top: 22px;
-    color: var(--text-faint);
-    font-size: 0.92rem;
-  }
-  .price-tag b{ color: var(--text); }
-
-  /* Heatmap visual */
-  .heatmap-card{
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 26px;
-  }
-  .heatmap-card .hm-head{
-    display:flex; justify-content:space-between; align-items:baseline;
-    margin-bottom: 22px;
-  }
-  .heatmap-card .hm-head span:first-child{ font-weight:600; font-size:0.95rem; }
-  .heatmap-card .hm-head span:last-child{ color: var(--text-faint); font-size:0.82rem; }
-  .barchart{
-    display:flex;
-    align-items:flex-end;
-    gap: 10px;
-    height: 160px;
-    padding: 0 4px;
-  }
-  .barchart .bar-col{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
-    height:100%;
-  }
-  .barchart .bar{
-    width: 100%;
-    max-width: 26px;
-    border-radius: 4px 4px 2px 2px;
-    background: linear-gradient(180deg, var(--green-3), var(--green-1));
-    height: 0%;
-    animation: barIn 0.9s cubic-bezier(.2,.8,.2,1) forwards;
-  }
-  .barchart .bar-label{
-    margin-top: 8px;
-    font-size: 0.68rem;
-    color: var(--text-faint);
-  }
-  @keyframes barIn{
-    from{ height: 0%; }
-    to{ height: var(--h); }
-  }
-  .hm-foot{
-    margin-top: 18px;
-    display:flex; justify-content:space-between; align-items:center;
-    color: var(--text-faint); font-size: 0.8rem;
-  }
-  .hm-foot .streak{ color: var(--green-3); font-weight:700; font-size:0.85rem; }
-
-  @media (prefers-reduced-motion: reduce){
-    .barchart .bar{ animation: none; height: var(--h); }
-  }
-
-  /* ---------- SECTION HEADS ---------- */
-  section{ padding: 76px 0; border-bottom: 1px solid var(--line); }
-  .section-head{ max-width: 560px; margin-bottom: 44px; }
-  .section-head h2{
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
-  .section-head p{ color: var(--text-dim); font-size: 1rem; }
-
-  /* ---------- FEATURES ---------- */
-  .feature-grid{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--line);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow:hidden;
-  }
-  @media (max-width: 760px){ .feature-grid{ grid-template-columns: 1fr; } }
-  .feature{
-    background: var(--bg-2);
-    padding: 28px 26px;
-  }
-  .feature h3{
-    font-size: 1.02rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--green-3);
-  }
-  .feature p{ color: var(--text-dim); font-size: 0.92rem; }
-
-  /* ---------- HOW IT WORKS ---------- */
-  .steps{
-    display:flex; flex-direction:column; gap:0;
-    border-top: 1px solid var(--line);
-  }
-  .step{
-    display:grid;
-    grid-template-columns: 64px 1fr;
-    gap: 20px;
-    padding: 26px 0;
-    border-bottom: 1px solid var(--line);
-    align-items: start;
-  }
-  .step .num{
-    font-family:'Sora', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--green-1);
-  }
-  .step h3{ font-size:1.05rem; font-weight:600; margin-bottom:6px; }
-  .step p{ color: var(--text-dim); font-size:0.93rem; max-width: 480px; }
-
-  /* ---------- PURCHASE ---------- */
-  .purchase-card{
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 40px;
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-  }
-  @media (max-width: 760px){ .purchase-card{ grid-template-columns: 1fr; padding: 28px; } }
-  .purchase-left h3{ font-size:1.3rem; font-weight:700; margin-bottom:10px; }
-  .purchase-left p{ color: var(--text-dim); font-size:0.95rem; margin-bottom: 22px; }
-  .price-big{
-    font-family:'Sora', sans-serif;
-    font-size: 2.6rem;
-    font-weight: 800;
-    color: var(--green-3);
-    margin-bottom: 4px;
-  }
-  .price-sub{ color: var(--text-faint); font-size:0.85rem; margin-bottom: 26px; }
-  .transfer-box{
-    background: var(--bg-2);
-    border: 1px dashed var(--line);
-    border-radius: 10px;
-    padding: 18px 20px;
-  }
-  .transfer-box .row{
-    display:flex; justify-content:space-between; align-items:center;
-    padding: 8px 0;
-    font-size: 0.9rem;
-  }
-  .transfer-box .row + .row{ border-top: 1px solid var(--line); }
-  .transfer-box .label{ color: var(--text-faint); }
-  .transfer-box .value{ font-weight:600; }
-  .transfer-note{
-    margin-top: 16px;
-    color: var(--text-faint);
-    font-size: 0.85rem;
-  }
-  .purchase-right{
-    display:flex; flex-direction:column; justify-content:center;
-    gap: 16px;
-  }
-  .purchase-right ol{
-    padding-left: 20px;
-    color: var(--text-dim);
-    font-size: 0.92rem;
-    display:flex; flex-direction:column; gap: 12px;
-  }
-  .purchase-right ol li b{ color: var(--text); }
-  .ig-btn{
-    margin-top: 8px;
-    background: transparent;
-    border: 1px solid var(--green-2);
-    color: var(--green-3);
-    font-weight:600;
-    font-size: 0.95rem;
-    padding: 13px 20px;
-    border-radius: 7px;
-    text-align:center;
-    text-decoration:none;
-  }
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
   /* ---------- PROMO BANNER ---------- */
   .promo-banner{
@@ -326,105 +42,159 @@
     border-bottom: 1px solid var(--green-1);
     padding: 14px 0;
   }
-  .promo-banner .wrap{
-    display:flex; align-items:center; justify-content:center;
-    gap: 10px;
-    flex-wrap: wrap;
-    text-align:center;
-  }
-  .promo-banner p{
-    margin:0;
-    color: var(--text);
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-weight: 600;
-    font-size: 1.05rem;
-  }
+  .promo-banner .wrap{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; text-align:center; }
+  .promo-banner p{ margin:0; color: var(--text); font-size: 0.95rem; font-weight:600; }
   .promo-banner .promo-code{
-    background: var(--green-3);
-    color: #06140d;
-    font-family: 'Sora', sans-serif;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 0.9rem;
-    padding: 3px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-  }
-  @media (max-width: 560px){
-    .promo-banner p{ font-size: 0.87rem; }
+    background: var(--green-3); color:#06140d; font-weight:800; font-size:0.9rem;
+    padding: 3px 10px; border-radius:6px; letter-spacing:0.03em; white-space:nowrap;
   }
 
-  /* ---------- FOOTER ---------- */
-  /* ---------- URGENCY BONUS BLOCK ---------- */
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(8,20,16,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; height: 64px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-weight:700; font-size: 1.05rem; }
+  .brand-dot{ width:10px;height:10px;border-radius:2px; background: var(--green-3); box-shadow: 0 0 12px var(--green-3); }
+  .nav-cta{
+    background: var(--green-3); color:#06140d; font-weight:700; font-size: 0.9rem;
+    padding: 9px 18px; border-radius:6px; text-decoration:none;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .nav-cta:hover{ transform: translateY(-1px); box-shadow: 0 6px 18px rgba(110,227,160,0.25);}
+
+  /* ---------- HERO ---------- */
+  header.hero{ padding: 72px 0 64px; position:relative; overflow:hidden; border-bottom: 1px solid var(--line); }
+  .hero-grid{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items:center; }
+  @media (max-width: 860px){ .hero-grid{ grid-template-columns: 1fr; gap: 36px; } }
+  .kicker{ color: var(--red); font-size: 0.85rem; font-weight: 700; margin-bottom: 16px; letter-spacing:0.02em; }
+  h1.headline{ font-size: clamp(2.1rem, 5.2vw, 3.5rem); font-weight: 800; line-height: 1.06; margin-bottom: 20px; max-width: 580px; }
+  h1.headline em{ font-style:normal; color: var(--green-3); }
+  .subhead{ color: var(--text-dim); font-size: 1.1rem; max-width: 480px; margin-bottom: 30px; }
+  .subhead b{ color: var(--text); }
+  .hero-ctas{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary{
+    background: var(--green-3); color:#06140d; font-weight:800; font-size: 1rem;
+    padding: 16px 28px; border-radius:7px; text-decoration:none; display:inline-block;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-1px); box-shadow: 0 8px 24px rgba(110,227,160,0.3);}
+  .btn-ghost{
+    border: 1px solid var(--line); color: var(--text-dim); font-weight:600; font-size: 0.98rem;
+    padding: 15px 24px; border-radius:7px; text-decoration:none; display:inline-block;
+  }
+  .price-tag{ margin-top: 20px; color: var(--text-faint); font-size: 0.92rem; }
+  .price-tag b{ color: var(--text); }
+
+  /* Hero visuals stack */
+  .hero-visuals{ display:flex; flex-direction:column; gap:16px; }
+  .visual-card{ background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px 22px; }
+  .visual-card .vc-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:14px; }
+  .visual-card .vc-head span:first-child{ font-weight:700; font-size:0.92rem; }
+  .visual-card .vc-head span:last-child{ color: var(--green-3); font-size:0.78rem; font-weight:700; }
+
+  /* Line chart (superación) */
+  .linechart-wrap{ position:relative; }
+  .linechart-caption{ display:flex; justify-content:space-between; margin-top:8px; color: var(--text-faint); font-size:0.7rem; }
+
+  /* Mandala mini */
+  .mandala-row{ display:flex; align-items:center; gap:16px; }
+  .mandala-row p{ color: var(--text-dim); font-size:0.82rem; }
+
+  /* ---------- SECTION HEADS ---------- */
+  section{ padding: 70px 0; border-bottom: 1px solid var(--line); }
+  .section-head{ max-width: 600px; margin-bottom: 40px; }
+  .section-head h2{ font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 800; margin-bottom: 12px; }
+  .section-head p{ color: var(--text-dim); font-size: 1.02rem; }
+
+  /* ---------- FEATURES ---------- */
+  .feature-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow:hidden;
+  }
+  @media (max-width: 760px){ .feature-grid{ grid-template-columns: 1fr; } }
+  .feature{ background: var(--bg-2); padding: 28px 26px; }
+  .feature h3{ font-size: 1.02rem; font-weight: 700; margin-bottom: 8px; color: var(--green-3); }
+  .feature p{ color: var(--text-dim); font-size: 0.92rem; }
+
+  /* ---------- URGENCY BLOCK ---------- */
   .urgency-block{
-    background: linear-gradient(135deg, rgba(196,67,42,0.12), rgba(255,107,71,0.05));
-    border: 1px solid #5c2418;
-    border-radius: 18px;
-    padding: 30px 28px;
-    max-width: 720px;
-    margin: 0 auto 40px;
-    text-align:center;
-    scroll-margin-top: 90px;
+    background: linear-gradient(135deg, rgba(196,67,42,0.14), rgba(255,107,71,0.06));
+    border: 1px solid #5c2418; border-radius: 18px; padding: 32px 28px;
+    max-width: 760px; margin: 0 auto 36px; text-align:center; scroll-margin-top: 90px;
   }
   .urgency-block .urgency-eyebrow{
-    color: #ff6b47;
-    font-weight:700;
-    font-size:0.82rem;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    margin-bottom: 10px;
-    display:block;
+    color: var(--red); font-weight:800; font-size:0.85rem; letter-spacing:0.1em;
+    text-transform:uppercase; margin-bottom: 10px; display:block;
   }
-  .urgency-block h3{
-    font-family:'Sora', sans-serif;
-    font-size: 1.3rem;
-    font-weight:800;
-    margin-bottom: 8px;
-  }
-  .urgency-block p.sub{ color: var(--text-dim); font-size:0.92rem; margin-bottom:20px; }
-  .timer{
-    font-family:'Sora', sans-serif;
-    font-weight:800;
-    font-size: 2.4rem;
-    color: #ff6b47;
-    letter-spacing: 0.03em;
-    margin-bottom: 22px;
-  }
+  .urgency-block h3{ font-family:'Sora', sans-serif; font-size: 1.4rem; font-weight:800; margin-bottom: 8px; }
+  .urgency-block p.sub{ color: var(--text-dim); font-size:0.94rem; margin-bottom:20px; }
+  .timer{ font-family:'Sora', sans-serif; font-weight:800; font-size: 2.6rem; color: var(--red); letter-spacing: 0.03em; margin-bottom: 22px; }
   .timer.expired{ color: var(--text-faint); font-size:1.1rem; }
-  .bonus-list{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    text-align:left;
-  }
+
+  .bonus-list{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; text-align:left; }
   .bonus-item{
-    background: rgba(255,255,255,0.03);
-    border: 1px solid rgba(255,107,71,0.25);
-    border-radius: 12px;
-    padding: 16px;
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,107,71,0.3);
+    border-radius: 12px; padding: 16px; overflow:hidden;
   }
-  .bonus-item .bonus-tag{
-    color: #ff6b47;
-    font-size: 0.7rem;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
+  .bonus-visual{
+    height: 70px; border-radius: 8px; margin-bottom:12px;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, rgba(110,227,160,0.1), rgba(110,227,160,0.02));
+    border: 1px solid var(--green-1);
   }
-  .bonus-item h4{ font-size: 0.92rem; margin: 6px 0 4px; }
+  .bonus-item .bonus-tag{ color: var(--red); font-size: 0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; }
+  .bonus-item h4{ font-size: 0.94rem; margin: 6px 0 4px; }
   .bonus-item p{ color: var(--text-faint); font-size: 0.8rem; }
+  .bonus-value{ margin-top:10px; font-size:0.78rem; color: var(--text-faint); }
+  .bonus-value b{ color: var(--green-3); text-decoration: line-through; text-decoration-color: var(--red); }
+
+  .value-stack{
+    max-width: 760px; margin: 26px auto 0; background: rgba(0,0,0,0.18);
+    border: 1px solid var(--line); border-radius: 14px; padding: 22px 26px;
+  }
+  .value-row{ display:flex; justify-content:space-between; padding:8px 0; font-size:0.92rem; color: var(--text-dim); border-bottom: 1px dashed var(--line); }
+  .value-row:last-child{ border-bottom:none; }
+  .value-row.total{ font-weight:800; color: var(--text); font-size:1.05rem; padding-top:14px; }
+  .value-row .strike{ text-decoration: line-through; color: var(--text-faint); }
+  .value-row.total .price-final{ color: var(--green-3); }
+
   @media (max-width:700px){
     .bonus-list{ grid-template-columns: 1fr; }
-    .timer{ font-size: 1.9rem; }
+    .timer{ font-size: 2rem; }
+  }
+
+  /* ---------- PURCHASE CARD ---------- */
+  .purchase-card{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:0;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px; overflow:hidden;
+    max-width: 900px; margin: 0 auto;
+  }
+  @media (max-width: 760px){ .purchase-card{ grid-template-columns: 1fr; } }
+  .purchase-left{ padding: 36px 34px; border-right: 1px solid var(--line); }
+  @media (max-width: 760px){ .purchase-left{ border-right:none; border-bottom: 1px solid var(--line); } }
+  .purchase-right{ padding: 36px 34px; background: var(--bg-2); }
+  .purchase-left h3{ font-size: 1.2rem; font-weight:800; margin-bottom: 8px; }
+  .purchase-left > p{ color: var(--text-dim); font-size: 0.92rem; margin-bottom: 20px; }
+  .price-big{ font-family:'Sora', sans-serif; font-weight:800; font-size: 2.4rem; }
+  .price-sub{ color: var(--text-faint); font-size: 0.85rem; margin-bottom: 6px; }
+  .transfer-box{ background: rgba(0,0,0,0.2); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; margin-top: 8px; }
+  .transfer-box .row{ display:flex; justify-content:space-between; padding: 5px 0; font-size:0.88rem; }
+  .transfer-box .label{ color: var(--text-faint); }
+  .transfer-box .value{ font-weight:700; }
+  .transfer-note{ color: var(--text-faint); font-size:0.78rem; margin-top:8px; }
+  .purchase-right ol{ padding-left: 20px; color: var(--text-dim); font-size:0.92rem; margin-bottom:22px; }
+  .purchase-right li{ margin-bottom:10px; }
+  .ig-btn{
+    display:block; text-align:center; background: transparent; border: 1px solid var(--green-3);
+    color: var(--green-3); font-weight:700; padding: 13px; border-radius:8px; text-decoration:none;
   }
 
   footer{ padding: 40px 0; }
-  footer .wrap{
-    display:flex; justify-content:space-between; align-items:center;
-    color: var(--text-faint); font-size: 0.82rem;
-    flex-wrap: wrap; gap: 12px;
-  }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; color: var(--text-faint); font-size: 0.82rem; flex-wrap: wrap; gap: 12px; }
 </style>
 </head>
 <body>
@@ -445,24 +215,61 @@
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="kicker">Planilla de Google Sheets / Excel</div>
-      <h1 class="headline">Un tablero para ver <em>tus hábitos</em> tomando forma, día a día.</h1>
-      <p class="subhead">Cargá tus 10 hábitos, marcá tu avance y mirá cómo se arma tu racha en un dashboard que hace el seguimiento por vos. Sin apps, sin cuentas: es un solo archivo, tuyo para siempre.</p>
+      <div class="kicker">⚠ Dejá de "intentarlo" — empezá a lograrlo</div>
+      <h1 class="headline">La diferencia entre <em>soñarlo</em> y <em>lograrlo</em> es verlo todos los días.</h1>
+      <p class="subhead">Cargá tus 10 hábitos, marcá tu avance, y mirá con tus propios ojos cómo <b>tu constancia deja de ser una sensación y se convierte en un número que sube.</b> Sin apps, sin cuentas: un solo archivo, tuyo para siempre.</p>
       <div class="hero-ctas">
-        <a class="btn-primary" href="#comprar">Comprar ahora — $9.900 ARS</a>
+        <a class="btn-primary" href="#comprar">Quiero mi Tracker ahora — $9.900 ARS</a>
         <a class="btn-ghost" href="#incluye">Ver qué incluye</a>
       </div>
       <p class="price-tag">Pago único · <b>$9.900 ARS</b> · entrega por Instagram al confirmar el pago</p>
     </div>
-    <div class="heatmap-card">
-      <div class="hm-head">
-        <span>Cumplimiento semanal</span>
-        <span>10/10 hábitos</span>
+
+    <div class="hero-visuals">
+      <div class="visual-card">
+        <div class="vc-head"><span>Tu evolución real</span><span>↑ en ascenso</span></div>
+        <div class="linechart-wrap">
+          <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="100" x2="300" y2="100" stroke="#1c3a2c" stroke-width="1"/>
+            <line x1="0" y1="65" x2="300" y2="65" stroke="#1c3a2c" stroke-width="1" stroke-dasharray="3,4"/>
+            <line x1="0" y1="30" x2="300" y2="30" stroke="#1c3a2c" stroke-width="1" stroke-dasharray="3,4"/>
+            <path d="M0,95 C 40,90 60,75 90,72 C 130,68 150,55 180,45 C 210,36 230,30 260,18 L 300,8"
+                  fill="none" stroke="#6ee3a0" stroke-width="3" stroke-linecap="round"/>
+            <path d="M0,95 C 40,90 60,75 90,72 C 130,68 150,55 180,45 C 210,36 230,30 260,18 L 300,8 L300,110 L0,110 Z"
+                  fill="url(#g1)" opacity="0.25"/>
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6ee3a0"/>
+                <stop offset="100%" stop-color="#081410" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <circle cx="300" cy="8" r="4.5" fill="#9dffc3"/>
+          </svg>
+          <div class="linechart-caption"><span>Mes 1</span><span>Mes 2</span><span>Mes 3</span><span>Mes 4</span><span>Mes 5</span><span>Mes 6</span></div>
+        </div>
       </div>
-      <div class="barchart" id="barchart"></div>
-      <div class="hm-foot">
-        <span>últimos 7 días</span>
-        <span class="streak">racha: 12 días</span>
+
+      <div class="visual-card">
+        <div class="vc-head"><span>Vista mensual · mandala</span><span>31 días</span></div>
+        <div class="mandala-row">
+          <svg width="92" height="92" viewBox="0 0 92 92" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(46,46)">
+              <circle r="42" fill="none" stroke="#1c3a2c" stroke-width="1"/>
+              <circle r="32" fill="none" stroke="#1c3a2c" stroke-width="1"/>
+              <circle r="22" fill="none" stroke="#1c3a2c" stroke-width="1"/>
+              <circle r="12" fill="none" stroke="#1c3a2c" stroke-width="1"/>
+              <g stroke="#6ee3a0" stroke-width="9" fill="none" opacity="0.9">
+                <path d="M 0,-42 A 42,42 0 0 1 35,-23" />
+                <path d="M -30,-30 A 42,42 0 0 1 -10,-41" />
+                <path d="M -22,-22 A 32,32 0 0 1 22,-22" opacity="0.7"/>
+                <path d="M -32,10 A 32,32 0 0 1 -22,-22" opacity="0.7"/>
+                <path d="M -15,-15 A 22,22 0 0 1 15,-15" opacity="0.55"/>
+                <path d="M 15,15 A 22,22 0 0 1 -8,21" opacity="0.55"/>
+              </g>
+            </g>
+          </svg>
+          <p>Cada anillo, un hábito. Cada rebanada, un día. De un vistazo sabés si vas ganando o perdiendo el mes.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -471,8 +278,8 @@
 <section id="incluye">
   <div class="wrap">
     <div class="section-head">
-      <h2>Qué incluye la planilla</h2>
-      <p>Cinco hojas conectadas entre sí: cargás una vez y todo lo demás se calcula solo.</p>
+      <h2>Todo lo que necesitás. Nada de lo que sobra.</h2>
+      <p>Cinco hojas conectadas entre sí: cargás una vez y todo lo demás se calcula solo — vos solo tenés que tildar.</p>
     </div>
     <div class="feature-grid">
       <div class="feature">
@@ -509,27 +316,48 @@
       <h2>Comprá tu Habit Tracker</h2>
       <p>Pagá con Mercado Pago al instante, o por transferencia — como prefieras.</p>
     </div>
+
     <div class="urgency-block" id="comprar">
-      <span class="urgency-eyebrow">Bonus por tiempo limitado</span>
-      <h3>Comprá en los próximos 15 minutos y llevate estos 3 regalos</h3>
-      <p class="sub">Se suman gratis a tu compra — sin costo extra.</p>
+      <span class="urgency-eyebrow">🔥 Bonus por tiempo limitado</span>
+      <h3>Comprá en los próximos 15 minutos y llevate estos 3 regalos GRATIS</h3>
+      <p class="sub">Se suman a tu compra sin costo extra. Cuando el timer llega a cero, se van.</p>
       <div class="timer" id="urgency-timer">15:00</div>
       <div class="bonus-list">
         <div class="bonus-item">
+          <div class="bonus-visual">
+            <svg width="44" height="44" viewBox="0 0 44 44"><rect x="4" y="4" width="36" height="36" rx="4" fill="none" stroke="#6ee3a0" stroke-width="2"/><line x1="10" y1="14" x2="34" y2="14" stroke="#6ee3a0" stroke-width="2"/><line x1="10" y1="22" x2="30" y2="22" stroke="#3f9e6a" stroke-width="2"/><line x1="10" y1="30" x2="26" y2="30" stroke="#3f9e6a" stroke-width="2"/></svg>
+          </div>
           <span class="bonus-tag">Bonus 1</span>
           <h4>Guía de uso completa</h4>
           <p>Cómo sacarle el máximo provecho a cada herramienta, paso a paso.</p>
+          <div class="bonus-value">Valor real: <b>$4.900</b> → hoy gratis</div>
         </div>
         <div class="bonus-item">
+          <div class="bonus-visual">
+            <svg width="44" height="44" viewBox="0 0 44 44"><rect x="5" y="8" width="14" height="30" rx="2" fill="none" stroke="#6ee3a0" stroke-width="2"/><rect x="25" y="14" width="14" height="24" rx="2" fill="none" stroke="#3f9e6a" stroke-width="2"/></svg>
+          </div>
           <span class="bonus-tag">Bonus 2</span>
           <h4>Trackers imprimibles</h4>
           <p>Planificación diaria, semanal y tracker radial de 31 días, listos para imprimir.</p>
+          <div class="bonus-value">Valor real: <b>$5.900</b> → hoy gratis</div>
         </div>
         <div class="bonus-item">
+          <div class="bonus-visual">
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="17" fill="none" stroke="#6ee3a0" stroke-width="2"/><circle cx="22" cy="22" r="10" fill="none" stroke="#3f9e6a" stroke-width="2"/><circle cx="22" cy="22" r="3" fill="#6ee3a0"/></svg>
+          </div>
           <span class="bonus-tag">Bonus 3</span>
           <h4>Galería de 7 estilos</h4>
           <p>Mandala radial, matriz mensual, mapa de calor y más — elegí el que más te guste.</p>
+          <div class="bonus-value">Valor real: <b>$6.900</b> → hoy gratis</div>
         </div>
+      </div>
+
+      <div class="value-stack">
+        <div class="value-row"><span>Habit Tracker Verde Futurista</span><span>$9.900</span></div>
+        <div class="value-row"><span>Bonus 1 — Guía de uso</span><span class="strike">$4.900</span></div>
+        <div class="value-row"><span>Bonus 2 — Trackers imprimibles</span><span class="strike">$5.900</span></div>
+        <div class="value-row"><span>Bonus 3 — Galería de 7 estilos</span><span class="strike">$6.900</span></div>
+        <div class="value-row total"><span>Valor total de hoy</span><span class="price-final">$9.900 <span style="font-size:0.8rem; color:var(--text-faint); font-weight:600;">(en vez de $27.600)</span></span></div>
       </div>
     </div>
 
@@ -573,24 +401,6 @@
 </footer>
 
 <script>
-  const bc = document.getElementById('barchart');
-  const days = ['L','M','M','J','V','S','D'];
-  const values = [60, 40, 90, 70, 100, 50, 80];
-  days.forEach((d, i) => {
-    const col = document.createElement('div');
-    col.className = 'bar-col';
-    const bar = document.createElement('div');
-    bar.className = 'bar';
-    bar.style.setProperty('--h', values[i] + '%');
-    bar.style.animationDelay = (i * 90) + 'ms';
-    const label = document.createElement('div');
-    label.className = 'bar-label';
-    label.textContent = d;
-    col.appendChild(bar);
-    col.appendChild(label);
-    bc.appendChild(col);
-  });
-
   // Countdown de 15 minutos para el bonus — arranca de cero cada vez que se carga la página
   (function(){
     let totalSeconds = 15 * 60;

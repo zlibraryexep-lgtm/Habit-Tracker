@@ -357,6 +357,68 @@
   }
 
   /* ---------- FOOTER ---------- */
+  /* ---------- URGENCY BONUS BLOCK ---------- */
+  .urgency-block{
+    background: linear-gradient(135deg, rgba(196,67,42,0.12), rgba(255,107,71,0.05));
+    border: 1px solid #5c2418;
+    border-radius: 18px;
+    padding: 30px 28px;
+    max-width: 720px;
+    margin: 0 auto 40px;
+    text-align:center;
+    scroll-margin-top: 90px;
+  }
+  .urgency-block .urgency-eyebrow{
+    color: #ff6b47;
+    font-weight:700;
+    font-size:0.82rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom: 10px;
+    display:block;
+  }
+  .urgency-block h3{
+    font-family:'Sora', sans-serif;
+    font-size: 1.3rem;
+    font-weight:800;
+    margin-bottom: 8px;
+  }
+  .urgency-block p.sub{ color: var(--text-dim); font-size:0.92rem; margin-bottom:20px; }
+  .timer{
+    font-family:'Sora', sans-serif;
+    font-weight:800;
+    font-size: 2.4rem;
+    color: #ff6b47;
+    letter-spacing: 0.03em;
+    margin-bottom: 22px;
+  }
+  .timer.expired{ color: var(--text-faint); font-size:1.1rem; }
+  .bonus-list{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    text-align:left;
+  }
+  .bonus-item{
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,107,71,0.25);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .bonus-item .bonus-tag{
+    color: #ff6b47;
+    font-size: 0.7rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .bonus-item h4{ font-size: 0.92rem; margin: 6px 0 4px; }
+  .bonus-item p{ color: var(--text-faint); font-size: 0.8rem; }
+  @media (max-width:700px){
+    .bonus-list{ grid-template-columns: 1fr; }
+    .timer{ font-size: 1.9rem; }
+  }
+
   footer{ padding: 40px 0; }
   footer .wrap{
     display:flex; justify-content:space-between; align-items:center;
@@ -441,44 +503,36 @@
   </div>
 </section>
 
-<section id="como-funciona">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Cómo se usa</h2>
-      <p>Tres pasos, cinco minutos de configuración inicial.</p>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="num">01</div>
-        <div>
-          <h3>Configurás tus hábitos</h3>
-          <p>Escribís tus 10 hábitos, el mes y el año en la hoja de configuración. Todo el resto de la planilla se arma solo.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="num">02</div>
-        <div>
-          <h3>Marcás tu avance cada día</h3>
-          <p>Entrás al tracker o a la vista semanal y marcás qué hábitos cumpliste. Un minuto por día alcanza.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="num">03</div>
-        <div>
-          <h3>Mirás tu progreso</h3>
-          <p>El dashboard te muestra tu racha, tu porcentaje de cumplimiento y tu evolución del mes en gráficos.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="comprar" style="border-bottom:none;">
+<section id="comprar-section" style="border-bottom:none;">
   <div class="wrap">
     <div class="section-head">
       <h2>Comprá tu Habit Tracker</h2>
       <p>Pagá con Mercado Pago al instante, o por transferencia — como prefieras.</p>
     </div>
+    <div class="urgency-block" id="comprar">
+      <span class="urgency-eyebrow">Bonus por tiempo limitado</span>
+      <h3>Comprá en los próximos 15 minutos y llevate estos 3 regalos</h3>
+      <p class="sub">Se suman gratis a tu compra — sin costo extra.</p>
+      <div class="timer" id="urgency-timer">15:00</div>
+      <div class="bonus-list">
+        <div class="bonus-item">
+          <span class="bonus-tag">Bonus 1</span>
+          <h4>Guía de uso completa</h4>
+          <p>Cómo sacarle el máximo provecho a cada herramienta, paso a paso.</p>
+        </div>
+        <div class="bonus-item">
+          <span class="bonus-tag">Bonus 2</span>
+          <h4>Trackers imprimibles</h4>
+          <p>Planificación diaria, semanal y tracker radial de 31 días, listos para imprimir.</p>
+        </div>
+        <div class="bonus-item">
+          <span class="bonus-tag">Bonus 3</span>
+          <h4>Galería de 7 estilos</h4>
+          <p>Mandala radial, matriz mensual, mapa de calor y más — elegí el que más te guste.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="purchase-card">
       <div class="purchase-left">
         <h3>Habit Tracker Verde Futurista</h3>
@@ -536,6 +590,28 @@
     col.appendChild(label);
     bc.appendChild(col);
   });
+
+  // Countdown de 15 minutos para el bonus — arranca de cero cada vez que se carga la página
+  (function(){
+    let totalSeconds = 15 * 60;
+    const el = document.getElementById('urgency-timer');
+    function render(){
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      el.textContent = String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    }
+    render();
+    const interval = setInterval(function(){
+      totalSeconds--;
+      if (totalSeconds <= 0){
+        clearInterval(interval);
+        el.textContent = 'Bonus ya no disponible';
+        el.classList.add('expired');
+        return;
+      }
+      render();
+    }, 1000);
+  })();
 </script>
 
 </body>
